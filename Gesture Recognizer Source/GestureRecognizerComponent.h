@@ -36,6 +36,7 @@
 #pragma once
 
 #include "Components/ActorComponent.h"
+#include "GestureMathLibrary.h"
 #include "GestureRecognizerComponent.generated.h"
 
 
@@ -189,7 +190,7 @@ public:
 
 	UGestureRecognizerComponent();
 	virtual void InitializeComponent() override;
-	virtual void ReceiveTick(float DeltaTime) override;
+	virtual void ReceiveTick(float DeltaTime) /*override*/;
 	
 	// ===========================================================================
 	// Delegates
@@ -236,7 +237,7 @@ protected:
 	float LastFingerTouchTime;
 	
 	virtual void ResetGesture(void);
-	virtual void ReceiveInitializeComponent() override;
+	virtual void ReceiveInitializeComponent()/* override*/;
 	
 private:
 	void CalculateTouchCount(const FVector (&Touches)[EKeys::NUM_TOUCH_KEYS]);

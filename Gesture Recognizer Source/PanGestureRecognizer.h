@@ -45,43 +45,48 @@ UCLASS(ClassGroup=Input, meta=(BlueprintSpawnableComponent))
 class UPanGestureRecognizer : public UDynamicGestureRecognizer
 {
 	GENERATED_BODY()
-	UPanGestureRecognizer();
-
+		UPanGestureRecognizer();
+	bool bGestureBegan = false;
 public:
 	/** The minimum number of fingers that must be touching the screen in order for the delegate to be notified */
-	UPROPERTY(EditAnywhere, Category=Gestures)
-	int32 MinimumTouchCount;
-	
+	UPROPERTY(EditAnywhere, Category = Gestures)
+		int32 MinimumTouchCount;
+
 	/** The maximum number of fingers that can be down for the delegate to be notified */
-	UPROPERTY(EditAnywhere, Category=Gestures)
-	int32 MaximumTouchCount;
-	
+	UPROPERTY(EditAnywhere, Category = Gestures)
+		int32 MaximumTouchCount;
+
 	/** Access to the position of each key for the delegate method */
-	UPROPERTY(VisibleInstanceOnly, Category="Gestures|Result")
-	FVector2D TouchPoints[EKeys::NUM_TOUCH_KEYS];
-	
-	UFUNCTION(BlueprintCallable, Category="Gestures|Result")
-	TArray<FVector2D> GetTouchPoints();
-	
+	UPROPERTY(VisibleInstanceOnly, Category = "Gestures|Result")
+		FVector2D TouchPoints[EKeys::NUM_TOUCH_KEYS];
+
+	UFUNCTION(BlueprintCallable, Category = "Gestures|Result")
+		TArray<FVector2D> GetTouchPoints();
+
 	/** Allows delegate access to the number of fingers currently touching the screen */
-	UFUNCTION(BlueprintCallable, Category="Gestures|Result")
-	int32 GetTouchCount();
-	
+	UFUNCTION(BlueprintCallable, Category = "Gestures|Result")
+		int32 GetTouchCount();
+
 	/** Convenience function to retrieve the distance moved by any finger since the last delegate call. */
-	UFUNCTION(BlueprintCallable, Category="Gestures|Result")
-	FVector2D LastMoveDistanceForTouch(int32 Touch);
-	
+	UFUNCTION(BlueprintCallable, Category = "Gestures|Result")
+		FVector2D LastMoveDistanceForTouch(int32 Touch);
+
 	/** Convenience function to retrieve the distance moved by any finger since the last delegate call. his value is adjusted for screen resolution and returned in points not pixels */
-	UFUNCTION(BlueprintCallable, Category="Gestures|Result")
-	FVector2D LastMoveDistanceInPointsForTouch(int32 Touch);
-	
+	UFUNCTION(BlueprintCallable, Category = "Gestures|Result")
+		FVector2D LastMoveDistanceInPointsForTouch(int32 Touch);
+
 	/** Convenience function to retrieve the distance moved by the first finger since the last delegate call */
-	UFUNCTION(BlueprintCallable, Category="Gestures|Result")
-	FVector2D LastMoveDistanceForFirstTouch();
-	
+	UFUNCTION(BlueprintCallable, Category = "Gestures|Result")
+		FVector2D LastMoveDistanceForFirstTouch();
+
 	/** Convenience function to retrieve the distance moved by the first finger since the last delegate call. This value is adjusted for screen resolution and returned in points not pixels. */
-	UFUNCTION(BlueprintCallable, Category="Gestures|Result")
-	FVector2D LastMoveDistanceForFirstTouchInPoints();
+	UFUNCTION(BlueprintCallable, Category = "Gestures|Result")
+		FVector2D LastMoveDistanceForFirstTouchInPoints();
+
+
+	void DetectGestures(float DeltaTime);
+	void GestureFinished(float DeltaTime);
+	void ResetGesture();
 	
-	
-	
+
+};

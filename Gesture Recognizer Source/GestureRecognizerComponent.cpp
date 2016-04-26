@@ -211,5 +211,5 @@ void UGestureRecognizerComponent::CalculateTouchCount(const FVector (&Touches)[E
 
 void UGestureRecognizerComponent::ReceiveInitializeComponent()
 {
-	Super::ReceiveInitializeComponent();
+	//Super::ReceiveInitializeComponent();
 }
